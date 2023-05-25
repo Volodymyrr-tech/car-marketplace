@@ -9,41 +9,40 @@ import PaymentMethod from '../components/UI/PaymentMethod'
 import axios from 'axios'
 
 const CarDetails = () => {
-  const [carData, setCarData] = useState([])
-
+  const [singleCarItem, setSingleCarItem] = useState(null)
   const { name } = useParams()
-
-  const singleCarItem = carData.find((item) => item.carName === name)
 
   useEffect(() => {
     const fetchCars = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/cars/{name}')
+        const res = await axios.get(`http://localhost:5000/cars/${name}`)
         console.log(res.data)
-        setCarData(res.data)
+        setSingleCarItem(res.data)
       } catch (error) {
         console.error('Failed to fetch cars: ', error)
       }
     }
     fetchCars()
-  }, [])
+  }, [name])
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [singleCarItem])
-
+  if (!singleCarItem) {
+    return <div>Loading...</div>
+  }
   return (
-    <Helmet title={singleCarItem.carName}>
+    <Helmet title={singleCarItem.carname}>
       <section>
         <Container>
           <Row>
             <Col lg="6">
-              <img src={singleCarItem.imgUrl} alt="" className="w-100" />
+              <img src={singleCarItem.imgurl} alt="" className="w-100" />
             </Col>
 
             <Col lg="6">
               <div className="car__info">
-                <h2 className="section__title">{singleCarItem.carName}</h2>
+                <h2 className="section__title">{singleCarItem.carname}</h2>
 
                 <div className=" d-flex align-items-center gap-5 mb-4 mt-3">
                   <h6 className="rent__price fw-bold fs-4">
@@ -109,7 +108,7 @@ const CarDetails = () => {
                       class="ri-wheelchair-line"
                       style={{ color: '#f9a826' }}
                     ></i>{' '}
-                    {singleCarItem.seatType}
+                    {singleCarItem.seattype}
                   </span>
 
                   <span className=" d-flex align-items-center gap-1 section__description">
