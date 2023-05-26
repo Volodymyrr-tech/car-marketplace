@@ -10,6 +10,7 @@ import NotFound from '../pages/NotFound'
 import Contact from '../pages/Contact'
 import Register from '../pages/Register'
 import Login from '../pages/Login'
+import Booking from '../pages/Booking'
 
 const Routers = () => {
   return (
@@ -21,6 +22,7 @@ const Routers = () => {
       {/* <Route path="/cars/:id" component={<CarDetails />} /> */}
 
       <Route path="/cars/:name" element={<CarDetails />} />
+      <Route path="/cars/:name/:booking" element={<Booking />} />
       <Route path="/blogs" element={<Blog />} />
       <Route path="/blogs/:slug" element={<BlogDetails />} />
       <Route path="/contact" element={<Contact />} />
