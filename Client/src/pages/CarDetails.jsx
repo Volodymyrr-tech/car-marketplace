@@ -126,7 +126,7 @@ const CarDetails = () => {
                 className="payment text-end mt-5"
                 style={{ marginBottom: '10rem' }}
               >
-                <Link to={`/cars/${name}/$`}>
+                <Link to={`/cars/${name}/booking`}>
                   <button>Request a call</button>
                 </Link>
               </div>

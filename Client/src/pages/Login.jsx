@@ -3,7 +3,7 @@ import { Row, Col, Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import axios from 'axios'
 import '../styles/login-registration.css'
 
-const Register = () => {
+const Login = () => {
   const [userData, setUserData] = useState({
     email: '',
     password: '',
@@ -23,6 +23,12 @@ const Register = () => {
       const response = await axios.post('http://localhost:5000/login', userData)
       console.log(response.data) // The new user's data
       // Here you can update your UI based on the response
+      localStorage.setItem('token', response.data.token)
+
+      // Set the token as the default authorization header for axios
+      axios.defaults.headers.common[
+        'Authorization'
+      ] = `Bearer ${response.data.token}`
     } catch (error) {
       console.error(error)
     }
@@ -77,4 +83,4 @@ const Register = () => {
   )
 }
 
-export default Register
+export default Login

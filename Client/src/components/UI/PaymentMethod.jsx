@@ -5,7 +5,6 @@ import masterCard from '../../assets/all-images/master-card.jpg'
 import paypal from '../../assets/all-images/paypal.jpg'
 import '../../styles/payment-method.css'
 import { Button } from 'reactstrap'
-// import '../../styles/modal.css'
 import Modal from 'react-modal'
 Modal.setAppElement('#root')
 
