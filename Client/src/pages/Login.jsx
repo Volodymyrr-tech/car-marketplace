@@ -8,7 +8,6 @@ const Login = () => {
     email: '',
     password: '',
   })
-
   const handleChange = (e) => {
     if (e.target.name === 'password') {
       setUserData({ ...userData, [e.target.name]: e.target.value })
@@ -16,16 +15,12 @@ const Login = () => {
       setUserData({ ...userData, [e.target.name]: e.target.value })
     }
   }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       const response = await axios.post('http://localhost:5000/login', userData)
-      console.log(response.data) // The new user's data
-      // Here you can update your UI based on the response
+      console.log(response.data)
       localStorage.setItem('token', response.data.token)
-
-      // Set the token as the default authorization header for axios
       axios.defaults.headers.common[
         'Authorization'
       ] = `Bearer ${response.data.token}`
@@ -37,7 +32,6 @@ const Login = () => {
       password: '',
     })
   }
-
   return (
     <Row className="justify-content-center">
       <Col lg={4} md={6}>
@@ -68,7 +62,6 @@ const Login = () => {
               className="formInput"
             />
           </FormGroup>
-
           <Button
             className="submitBtn"
             style={{
